@@ -8,6 +8,7 @@
 - MS Flat source anomalies: `140 × 10 = 1.1000` and `150 × 10 = 1.1800` are reproduced exactly and flagged in the UI.
 - Grade association for Flat, Round and Square chemistry/mechanical tables is not labelled on the source page.
 - Current manufacturing equipment, capacity, process wording and facility photography.
+- Replace all three generated illustrative images with approved commissioned photography if the site is published; they are not documentary evidence of Tulshyan's facility.
 - Sales inbox/CRM endpoint, privacy notice, consent wording and acknowledgement SLA.
 - Approved legal links and any current vacancies.
 

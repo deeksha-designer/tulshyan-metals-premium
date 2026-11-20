@@ -1,12 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "trailingSlash": true,
-  "rewrites": [
-    { "source": "/ms-angle/", "destination": "/products/ms-angle/" },
-    { "source": "/ms-flat/", "destination": "/products/ms-flat/" },
-    { "source": "/ms-round/", "destination": "/products/ms-round/" },
-    { "source": "/ms-square/", "destination": "/products/ms-square/" },
-    { "source": "/infrastructure/", "destination": "/manufacturing/" }
-  ]
+  "cleanUrls": true
 }
