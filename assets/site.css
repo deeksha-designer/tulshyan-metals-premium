@@ -3,7 +3,8 @@
    One boilerplate for spacing, type, CTAs, menu, sliders and footer band.
    ===================================================================== */
 :root {
-  --space: 48px;              /* the only section / heading spacing */
+  --space: 48px;              /* heading -> content spacing */
+  --section-space: 120px;     /* top/bottom padding of every section */
   --header-h: 96px;
   --menu-head-h: 88px;        /* height of menu column titles (divider sits under it) */
   --menu-bg: #111315;
@@ -22,15 +23,17 @@
 .fa-jelly-fill { font-family: var(--_fa-family), "TM FA Fallback" !important; }
 
 /* ---------- Section boilerplate ---------- */
-main .section { padding-block: var(--space); }
+main .section { padding-block: var(--section-space); }
 section#quality { padding-bottom: 0; }
 section#contact { padding-top: 0; padding-bottom: 0; }
-.confidence-band { padding: var(--space) 0; }
+.confidence-band { padding: var(--section-space) 0; }
 .editorial-heading,
 .confidence-head .editorial-heading,
 .sustainability-title h2 { margin-bottom: var(--space); }
-.about-top { margin-bottom: var(--space); }
-.icon-reasons { padding-bottom: var(--space); }
+.about-top { display: block; margin-bottom: var(--section-space); }
+.about-head .editorial-heading { margin-bottom: var(--space); }
+.about-lead { max-width: 640px; margin: 0 0 32px; color: #566068; }
+.icon-reasons { padding-bottom: var(--section-space); }
 .product-editorial { gap: var(--space); }
 .industry-controls { bottom: var(--space); }
 
@@ -85,6 +88,20 @@ p:not(.section-label, .career-side > p) {
 /* gold band: outline CTA in white */
 .confidence-band .button.outline { border-color: #fff !important; color: #fff !important; }
 .confidence-band .button.outline:hover { background: #fff !important; color: #111 !important; }
+
+/* card CTAs: same spec as every other button (beats the old card-link rules) */
+.product-copy > .button,
+.industry-list article .button {
+  gap: 28px;
+  padding: 10px 32px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  margin-top: 24px;
+}
+
+/* Insights: arrows sit under the paragraph */
+.insights-intro .insight-controls { margin: 32px 0 0; }
 
 /* ---------- Header ---------- */
 .header-inner { height: var(--header-h); min-height: 0; display: flex; align-items: center; justify-content: space-between; }
@@ -212,8 +229,56 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 .industry-list article p { margin-bottom: 24px; }
 
 /* ---------- About video ---------- */
-.about-media { border-radius: 24px; overflow: hidden; isolation: isolate; }
-.about-media video { border-radius: 24px; }
+/* container with a fixed (parallax) background video and the counter panel on top */
+.about-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 640px;
+  padding: 56px;
+  border-radius: 24px;
+  overflow: hidden;
+  clip-path: inset(0 round 24px);   /* clips the fixed video to this box */
+  background: #111;
+}
+.about-media video {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover;
+  border-radius: 0;
+}
+.about-media::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(10, 11, 12, .1) 30%, rgba(10, 11, 12, .55)); pointer-events: none; }
+.about-media .about-stats {
+  position: relative;
+  z-index: 2;
+  display: block !important;
+  width: min(460px, 100%);
+  margin: 0;
+  padding: 16px 40px !important;
+  border-radius: 6px;
+  background: rgba(17, 19, 21, .88) !important;
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.about-media .about-stats > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 26px 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .18) !important;
+  background: none !important;
+  color: #fff !important;
+}
+.about-media .about-stats > div:last-child { border-bottom: 0 !important; }
+.about-media .about-stats dt { margin: 0; color: #fff !important; font-size: 56px; line-height: 1; font-weight: 300; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.about-media .about-stats > div:last-child dt { font-size: 34px; letter-spacing: 0; }
+.about-media .about-stats dd { margin: 0; color: var(--gold) !important; font-size: 17px; line-height: 1.35; font-weight: 700; }
 
 /* ---------- Confidence band ---------- */
 .confidence-statement { max-width: 900px; }
@@ -222,7 +287,7 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 
 /* ---------- Sustainability card: text centred in the box ---------- */
 .sustain-card { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 56px; }
-.sustain-card p { margin-bottom: 32px; }
+.sustain-card h3 { margin: 0 0 32px; color: #fff !important; font-size: 24px; line-height: 32px; font-weight: 500; letter-spacing: 0; }
 
 /* ---------- Insights: 2 per view, no underline, icon box on hover only ---------- */
 .insight-track { display: flex; gap: 22px; transition: none; will-change: transform; }
@@ -277,7 +342,7 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 
 /* ---------- Support band: in container, half over banner / half over footer ---------- */
 .footer { background: var(--footer-bg); padding-top: 0; }
-.support-shell { position: relative; z-index: 3; }
+.support-shell { position: relative; z-index: 3; width: 100%; max-width: none; padding-inline: var(--pad); }   /* same edges as the footer columns */
 .support-band {
   display: grid !important;
   grid-template-columns: minmax(0, 2.3fr) minmax(300px, 1fr);
@@ -295,10 +360,13 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 .support-topics a:hover { color: var(--gold) !important; }
 .support-contact { padding: 56px 48px !important; border: 0 !important; background: #111315; }
 .support-search button { display: grid; place-items: center; font-size: 18px; }
-.footer-main { padding-top: var(--space); padding-bottom: var(--space); }
+.footer-main { padding-top: 96px; padding-bottom: var(--space); }
 .footer-bottom a { display: inline-flex; align-items: center; gap: 8px; }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 1300px) {
+  .product-editorial { grid-template-columns: 1fr; }
+}
 @media (max-width: 1100px) {
   .menu-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
   .menu-row::before { display: none; }
@@ -316,7 +384,12 @@ body.menu-open .menu-location { transition-delay: 830ms; }
   .support-contact { padding: 40px 28px !important; }
 }
 @media (max-width: 700px) {
-  :root { --header-h: 80px; }
+  :root { --header-h: 80px; --section-space: 80px; }
+  .about-media { min-height: 0; padding: 220px 16px 16px; }
+  .about-media video { position: absolute; width: 100% !important; height: 100% !important; }
+  .about-media .about-stats { padding: 8px 24px !important; }
+  .about-media .about-stats dt { font-size: 40px; }
+  .about-media .about-stats > div:last-child dt { font-size: 26px; }
   .logo img, .menu-top img { width: 170px; }
   .menu-toggle, .menu-close { width: 50px; height: 50px; }
   .menu-row { grid-template-columns: 1fr; row-gap: 20px; }
