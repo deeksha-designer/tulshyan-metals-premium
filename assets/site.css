@@ -283,7 +283,8 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 /* ---------- Confidence band ---------- */
 .confidence-statement { max-width: 900px; }
 .confidence-statement h2 { margin: 0 0 12px; color: #fff; font-size: 64px; line-height: 70px; letter-spacing: -2px; font-weight: 800; }
-.confidence-statement p { margin: 0; color: #fff !important; }
+.confidence-statement p { max-width: 620px; margin: 0; color: #fff !important; letter-spacing: 0 !important; }  /* wraps to two lines */
+@media (min-width: 701px) { .confidence-band .shell { align-items: center !important; } }  /* CTA centred on heading + para */
 
 /* ---------- Sustainability card: text centred in the box ---------- */
 .sustain-card { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 56px; }
@@ -362,6 +363,33 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 .support-search button { display: grid; place-items: center; font-size: 18px; }
 .footer-main { padding-top: 96px; padding-bottom: var(--space); }
 .footer-bottom a { display: inline-flex; align-items: center; gap: 8px; }
+
+/* ---------- Round corners: 24px on every box / card ---------- */
+:root { --radius: 24px; }
+section#about .shell.about-top { margin-bottom: 48px; }
+
+.product-main,
+.industry-list article,
+.icon-reasons article,
+.sustain-card,
+.sustain-feature > img,
+.insight-card > img,
+.career-visuals figure,
+.support-topics,
+.support-contact { border-radius: var(--radius) !important; overflow: hidden; }
+
+.about-stats { border-radius: var(--radius); }
+.industry-list article img { border-radius: 0; }
+
+/* careers: more space between the boxes */
+.career-visuals { gap: 24px; }
+.career-visuals figure { display: flex; flex-direction: column; }
+.career-main figcaption { flex: 1; }
+
+/* support band panels: rounded, separated like the other cards */
+.support-band { gap: 24px; }
+.support-search input { border-radius: 200px 0 0 200px; padding-left: 24px; }
+.support-search button { border-radius: 0 200px 200px 0; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1300px) {
