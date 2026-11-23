@@ -343,7 +343,7 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 
 /* ---------- Support band: in container, half over banner / half over footer ---------- */
 .footer { background: var(--footer-bg); padding-top: 0; }
-.support-shell { position: relative; z-index: 3; width: 100%; max-width: none; padding-inline: var(--pad); }   /* same edges as the footer columns */
+.support-shell { position: relative; z-index: 3; }   /* uses the standard .shell container */
 .support-band {
   display: grid !important;
   grid-template-columns: minmax(0, 2.3fr) minmax(300px, 1fr);
@@ -361,7 +361,9 @@ body.menu-open .menu-location { transition-delay: 830ms; }
 .support-topics a:hover { color: var(--gold) !important; }
 .support-contact { padding: 56px 48px !important; border: 0 !important; background: #111315; }
 .support-search button { display: grid; place-items: center; font-size: 18px; }
-.footer-main { padding-top: 96px; padding-bottom: var(--space); }
+.footer-main.shell { padding-top: 96px; padding-bottom: var(--space); padding-inline: var(--pad); }   /* footer in the standard .shell container */
+.footer-bottom { padding-inline: 0 !important; }
+.footer-bottom-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
 .footer-bottom a { display: inline-flex; align-items: center; gap: 8px; }
 
 /* ---------- Round corners: 24px on every box / card ---------- */
@@ -449,6 +451,7 @@ section#about .shell.about-top { margin-bottom: 48px; }
   .menu-toggle, .menu-close { width: 50px; height: 50px; }
   .menu-row { grid-template-columns: 1fr; row-gap: 20px; }
   .menu-body { justify-content: flex-start; padding-top: 32px; padding-bottom: 32px; }
+  .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
   .menu-row + .menu-row { margin-top: 20px; }
   .menu-col h2 { font-size: 22px; padding-bottom: 12px; }
   .menu-col ul { padding-top: 10px; }
